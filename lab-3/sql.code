@@ -1,0 +1,66 @@
+-- Problem 3.1
+SELECT "Dnum","Dname","MGRSSN","Fname","Lname"
+FROM "Departments"
+INNER JOIN "Employees" where "Departments"."MGRSSN" = "Employees"."SSN"
+
+-- Problem 3.2
+SELECT "Dname","Pname"
+FROM "Departments"
+INNER JOIN "Projects" where "Departments"."Dnum"="Projects"."Dnum"
+
+-- Problem 3.3
+SELECT "Dependent".*,"Fname","Lname"
+FROM "Dependent"
+LEFT JOIN "Employees" where "Dependent"."ESSN"="Employees"."SSN"
+
+-- Problem 3.4
+SELECT "Pnumber","Pname","Plocation"
+FROM "Projects"
+where "City" = 'Alex' OR "City" = 'Cairo'
+
+-- Problem 3.5
+SELECT *
+FROM "Projects"
+where "Pname" LIKE 'A%'
+
+-- Problem 3.6
+SELECT "Fname","Lname"
+FROM "Employees"
+where "Dno"=30 AND ("Salary" BETWEEN 1000 AND 2000)
+
+-- Problem 3.7
+SELECT "Fname","Lname"
+FROM "Employees"
+INNER JOIN "Works_on" where "Employees"."SSN"="Works_on"."ESSn"
+INNER JOIN "Projects" where "Works_on"."Pno"="Projects"."Pnumber"
+where "Dnum"=10 AND "Pname" = 'Al Rabwah' AND "Hours" >= 10
+
+-- Problem 3.8
+SELECT E1."Fname",E1."Lname"
+FROM "Employees" AS E1
+INNER JOIN "Employees" AS E2 ON E1."Superssn"=E2."SSN"
+where E2."Fname" = 'Kamel' 
+
+-- Problem 3.9
+SELECT "Employees"."Fname","Employees"."Lname","Projects"."Pname"
+FROM "Employees"
+INNER JOIN "Works_on" where "Employees"."SSN"="Works_on"."ESSn"
+INNER JOIN "Projects" where "Works_on"."Pno"="Projects"."Pnumber"
+ORDER BY "Pname"
+
+-- Problem 3.10
+SELECT "Projects"."Pnumber","Departments"."Dname","Employees"."Lname","Employees"."Address","Employees"."Bdate"
+FROM "Projects"
+INNER JOIN "Departments" where "Projects"."Dnum"="Departments"."Dnum"
+INNER JOIN "Employees" where "Departments"."MGRSSN" = "Employees"."SSN"
+where "City" = 'Cairo'
+
+-- Problem 3.11
+SELECT "Employees".*
+FROM "Employees"
+INNER JOIN "Departments" where "Employees"."SSN"="Departments"."MGRSSN" 
+
+-- Problem 3.12
+SELECT "Employees".*,"Dependent".*
+FROM "Employees"
+LEFT JOIN "Dependent" where "Employees"."SSN"="Dependent"."ESSN"
